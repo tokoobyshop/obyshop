@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Obi Shop</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">Obi<span>Shop</span>.</a>
+    <div class="navbar-nav">
+      <a href="#">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#menu">Produk</a>
+      <a href="#contact">Kontak</a>
+    </div>
+   <div class="navbar-extra">
+  <form class="search-box" onsubmit="return submitSearch()" style="display:flex; align-items:center;">
+    <input type="text" id="searchInput" placeholder="Cari produk..." />
+<button id="se" onclick="cariProduk()"><i class="fas fa-search"></i></button>
+<a href="cart.html" id="shopping-cart">
+  <i class="fas fa-shopping-cart"></i>
+</a>
+<a href="#" id="Aksesoris-menu"><i class="fas fa-bars"></i></a>
+    </button>
+  </form>
+</div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <main class="content">
+      <h1 id="hero-title">Mari Lihat <span>Toko Kami</span></h1>
+      <p id="hero-subtitle" class="section-title">Temukan berbagai aksesoris wanita dan aksesoris HP yang stylish dan berkualitas untuk melengkapi penampilan dan gadget Anda.</p>
+      <a href="#menu" class="btn beli-box">Beli Sekarang</a>
+    </main>
+  </section>
+
+<!-- About -->
+<section id="about" class="about-new">
+  <div class="container">
+    <h2 class="section-title">Tentang <span>ObiShop</span></h2>
+    <p class="section-subtext">Kenali lebih dekat toko kami, produk unggulan, dan kepercayaan pelanggan setia kami.</p>
+    <div class="row" id="about-text"></div>
+
+    <!-- Tambahan Video -->
+    <div class="about-videos">
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/Toko.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Suasana dan tampilan toko ObiShop yang nyaman untuk berbelanja.</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/cincin.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Koleksi cincin elegan untuk melengkapi penampilan Anda.</p>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="./img/videos/gantungan kunci.mp4" type="video/mp4">
+          Browser Anda tidak mendukung video tag.
+        </video>
+        <p class="video-desc">Beragam gantungan kunci karakter unik dan lucu.</p>
+      </div>
+    </div>
+    <!-- Akhir Tambahan Video -->
+  </div>
+</section>
+
+  <!-- Menu -->
+  <section id="menu" class="menu">
+    <h2><span>Poduk</span> Kami</h2>
+    <p class="section-subtext">Temukan berbagai pilihan terbaik dari produk unggulan kami...</p>
+    <div class="row" id="produk-terbaru"></div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2><span>Kontak</span> Kami</h2>
+    <p class="section-subtext">Hubungi kami melalui peta atau langsung lewat WhatsApp...</p>
+    <div class="row contact-container">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31862.97509334894!2d99.3701398149921!3d3.381466173353755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3033e8228af9ba4f%3A0xc85fff038468603!2sMedang%2C%20Kec.%20Medang%20Deras%2C%20Kabupaten%20Batu%20Bara%2C%20Sumatera%20Utara!5e0!3m2!1sid!2sid!4v1754724061223!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="contact-info-box">
+        <h3>Obi Shop</h3>
+        <p><i class="fas fa-map-marker-alt"></i> <span id="contact-address">Deras, Batu Bara, Sumut</span></p>
+        <p><i class="fas fa-phone"></i> <a id="contact-phone" href="https://wa.me/6281234567890">+62 812-3456-7890</a></p>
+        <p><i class="fas fa-envelope"></i> <a id="contact-email" href="mailto:tokoonline@obishop.id">tokoonline@obishop.id</a></p>
+        <p><i class="fas fa-clock"></i> <span id="contact-clock">Senin - Sabtu, 09.00 - 17.00 WIB</span></p>
+        <a href="https://wa.me/6281234567890?text=Halo%20saya%20ingin%20bertanya..." target="_blank" class="cta">Hubungi via WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="socials">
+      <a href="https://www.instagram.com/tokoobieshop_25" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/profil.php" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@oby_shop" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Kontak</a>
+    </div>
+    <div class="credit">
+      <p>Created by <a href="#">virna,egii</a>. | &copy; 2025.</p>
+    </div>
+  </footer>
+
+  <!-- WA Bubble -->
+  <div class="wa-bubble" id="waBubble">
+    <a href="#" class="wa-icon" onclick="toggleWaMenu(event)" aria-label="Chat WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <div class="wa-options" id="waOptions">
+      <div onclick="kirimPesan('Halo, saya ingin tanya tentang aksesoris HP.')">📱 Aksesoris HP</div>
+      <div onclick="kirimPesan('Halo, saya tertarik aksesoris wanita, bisa info?')">👜 Aksesoris Wanita</div>
+      <div onclick="kirimPesan('Ada stok gantungan kunci karakter?')">🔑 Gantungan Kunci</div>
+      <hr style="border-color: #333" />
+      <div onclick="kirimPesan('Halo, saya ingin pesan produk. Nama:\nAlamat:\nProduk:')">📝 Form Pemesanan</div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <script>
+    function formatRupiah(angka) {
+      return "IDR " + angka.toLocaleString("id-ID");
+    };
+
+    function toggleWaMenu(event) {
+      event.preventDefault();
+      const menu = document.getElementById("waOptions");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function kirimPesan(pesan) {
+      const noHP = "6281234567890";
+      const link = `https://wa.me/${noHP}?text=${encodeURIComponent(pesan)}`;
+      window.open(link, "_blank");
+    }
+
+    document.addEventListener("click", function (e) {
+      const bubble = document.getElementById("waBubble");
+      const menu = document.getElementById("waOptions");
+      if (!bubble.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const waBubble = document.getElementById("waBubble");
+      const contactSection = document.getElementById("contact");
+
+      if (contactSection && window.location.href.includes("#contact")) {
+        waBubble.style.display = "none";
+      }
+
+      window.addEventListener("scroll", () => {
+        const rect = contactSection.getBoundingClientRect();
+        const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+        waBubble.style.display = isVisible ? "none" : "block";
+      });
+
+      fetchProdukDariBackend();
+    });
+
+    async function loadContentFromBackend() {
+      const res = await fetch("http://localhost:5000/api/content");
+      const content = await res.json();
+
+      if (content.heroTitle) document.getElementById("hero-title").innerHTML = content.heroTitle;
+      if (content.heroSubtitle) document.getElementById("hero-subtitle").textContent = content.heroSubtitle;
+      if (content.heroTitleColor) document.getElementById("hero-title").style.color = content.heroTitleColor;
+      if (content.heroSubtitleColor) document.getElementById("hero-subtitle").style.color = content.heroSubtitleColor;
+      if (content.heroBackgroundImage) {
+        document.querySelector(".hero").style.backgroundImage = `url(http://localhost:5000${content.heroBackgroundImage})`;
+      }
+
+      if (content.aboutText) document.getElementById("about-text").textContent = content.aboutText;
+
+      if (content.contactInfo?.phone) {
+        document.getElementById("contact-phone").textContent = content.contactInfo.phone;
+        document.getElementById("contact-phone").href = `https://wa.me/${content.contactInfo.phone}`;
+      }
+      if (content.contactInfo?.email) {
+        document.getElementById("contact-email").textContent = content.contactInfo.email;
+        document.getElementById("contact-email").href = `mailto:${content.contactInfo.email}`;
+      }
+      if (content.contactInfo?.address) {
+        document.getElementById("contact-address").textContent = content.contactInfo.address;
+      }
+
+      if (content.whatsapp?.bubbleButton) {
+        document.querySelector(".wa-bubble a").href = `https://wa.me/${content.whatsapp.bubbleButton}`;
+      }
+      if (content.whatsapp?.contactButton) {
+        const cta = document.querySelector(".contact .cta");
+        if (cta) cta.href = `https://wa.me/${content.whatsapp.contactButton}`;
+      }
+
+      if (content.socialMedia?.instagram) {
+        document.querySelector(".socials .fa-instagram").parentElement.href = content.socialMedia.instagram;
+      }
+      if (content.socialMedia?.facebook) {
+        document.querySelector(".socials .fa-facebook").parentElement.href = content.socialMedia.facebook;
+      }
+      if (content.socialMedia?.tiktok) {
+        document.querySelector(".socials .fa-tiktok").parentElement.href = content.socialMedia.tiktok;
+      }
+
+      if (content.theme?.primaryColor) document.documentElement.style.setProperty("--primary", content.theme.primaryColor);
+      if (content.theme?.backgroundColor) document.documentElement.style.setProperty("--bg", content.theme.backgroundColor);
+    }
+
+    loadContentFromBackend();
+
+   let semuaProduk = []; // simpan semua produk yang di-fetch
+
+async function fetchProdukDariBackend() {
+  try {
+    const res = await fetch("http://localhost:5000/api/products");
+    semuaProduk = await res.json();
+    tampilkanProduk(semuaProduk);
+  } catch (err) {
+    console.error("❌ Gagal fetch produk dari backend:", err);
+  }
+}
+
+function tampilkanProduk(produkList) {
+  const container = document.getElementById("produk-terbaru");
+  container.innerHTML = "";
+
+  if (produkList.length === 0) {
+    container.innerHTML = "<p>Produk tidak ditemukan.</p>";
+    return;
+  }
+
+  produkList.forEach((p) => {
+    const div = document.createElement("div");
+    div.className = "menu-card";
+    div.innerHTML = `
+      <img src="http://localhost:5000/uploads/products/${p.imageFilename}" alt="${p.nama || p.name}" class="menu-card-img" />
+      <h3 class="menu-card-title">- ${p.nama || p.name} -</h3>
+      <p class="menu-card-price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
+      <button onclick="addToCart('${p._id}', '${p.nama || p.name}', ${p.harga || p.price}, 'http://localhost:5000/uploads/products/${p.imageFilename}')">Tambah ke Keranjang</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function submitSearch() {
+  const keyword = document.getElementById("searchInput").value.trim();
+  if (!keyword) {
+    alert("Masukkan kata kunci pencarian.");
+    return false;
+  }
+  window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
+  return false;
+}
+
+    function addToCart(id, nama, harga, gambar) {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const index = cart.findIndex(item => item.id === id);
+
+      if (index !== -1) {
+        cart[index].qty += 1;
+      } else {
+        cart.push({ id, nama, harga, gambar, qty: 1 });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Produk ditambahkan ke keranjang!");
+    }
+  </script>
+</body>
+</html>

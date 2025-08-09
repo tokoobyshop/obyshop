@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keranjang Belanja</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="halaman-keranjang">
+  <h2>Keranjang Belanja</h2>
+  <div id="cart-list"></div>
+  <div class="cart-summary" id="cart-summary"></div>
+  <button class="checkout-btn" id="waBtn" style="display:none;">
+    <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+  </button>
+
+  <script src="js/produk.js"></script>
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const container = document.getElementById("cart-list");
+    const summary = document.getElementById("cart-summary");
+    const waBtn = document.getElementById("waBtn");
+
+    function formatRupiah(num) {
+      return 'IDR ' + num.toLocaleString("id-ID");
+    }
+
+    function renderCart() {
+      container.innerHTML = "";
+      summary.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p class='empty'>Keranjang Anda kosong.</p>";
+        waBtn.style.display = "none";
+        return;
+      }
+
+      cart.forEach((item, i) => {
+        const itemTotal = item.harga * item.qty;
+        total += itemTotal;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <img src="${item.gambar}" alt="${item.nama}" />
+          <div class="cart-item-info">
+            <h4>${item.nama}</h4>
+            <small>Harga Satuan: ${formatRupiah(item.harga)}</small><br>
+            <div class="cart-qty">
+              <button onclick="ubahQty(${i}, -1)">-</button>
+              <input type="text" value="${item.qty}" readonly />
+              <button onclick="ubahQty(${i}, 1)">+</button>
+            </div>
+          </div>
+          <div class="cart-price">${formatRupiah(itemTotal)}</div>
+          <div class="cart-remove" onclick="hapusItem(${i})"><i class="fas fa-trash"></i></div>
+        `;
+        container.appendChild(row);
+      });
+
+      summary.innerHTML = `<strong>Total Belanja: ${formatRupiah(total)}</strong>`;
+      waBtn.style.display = "block";
+    }
+
+    function ubahQty(index, val) {
+      cart[index].qty += val;
+      if (cart[index].qty < 1) cart[index].qty = 1;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function hapusItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    document.getElementById("waBtn").addEventListener("click", () => {
+      const pesan = cart.map(p => `- ${p.nama} x${p.qty} = ${formatRupiah(p.harga * p.qty)}`).join('%0A');
+      const total = cart.reduce((sum, p) => sum + p.harga * p.qty, 0);
+      const teks = `Halo Obi Shop 👋%0ASaya ingin memesan:%0A${pesan}%0A%0ATotal: ${formatRupiah(total)}%0A%0ANama:%0AAlamat:%0A`;
+      window.open(`https://wa.me/6281234567890?text=${teks}`, "_blank");
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

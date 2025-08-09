@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hasil Pencarian - Obi Shop</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #b6895b;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .search-box {
+      display: flex;
+      background: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .search-box input {
+      border: none;
+      padding: 12px 20px;
+      font-size: 17px;
+      width: 280px;
+      outline: none;
+      transition: width 0.3s ease;
+    }
+    .search-box input:focus {
+      width: 350px;
+    }
+    .search-box button {
+      background: #25d366;
+      border: none;
+      color: white;
+      padding: 0 25px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    .search-box button:hover {
+      background: #1da851;
+    }
+   .container {
+  max-width: 1200px; /* biar responsif */
+  margin: 30px auto;
+  padding: 10px;
+}
+    h2 {
+      margin-bottom: 25px;
+      color: #222;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 28px;
+    }
+    .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* auto-fill supaya terisi rapat */
+  gap: 28px;
+}
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      cursor: pointer;
+    }
+  .product-card img {
+  width: 100%;
+  max-height: 500px; /* batas tinggi, tapi tidak memaksa */
+  height: auto;
+  object-fit: contain; /* tampilkan seluruh gambar */
+  background-color: #fff; /* beri background supaya tidak transparan jika gambar kecil */
+  border-bottom: 1px solid #eee;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.03);
+}
+    .product-info {
+      padding: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .product-info h3 {
+      font-size: 18px;
+      margin: 5px;
+      color: #333;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .product-info p.description {
+      font-size: 14px;
+      color: #666;
+      margin: 0px;
+      height: auto; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+    }
+    .product-info p.price {
+      font-weight: 700;
+      color: #b6895b;
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+    .product-info button {
+      background: #25d366;
+      border: none;
+      padding: 14px 0;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .product-info button:hover {
+      background: #1da851;
+      box-shadow: 0 7px 20px rgba(29, 168, 81, 0.6);
+    }
+    .not-found {
+      text-align: center;
+      color: #e74c3c;
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 40px;
+      user-select: none;
+    }
+    @media (max-width: 480px) {
+      .search-box input {
+        width: 180px;
+      }
+      .search-box input:focus {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 onclick="window.location.href='index.html'">Obi Shop</h1>
+  <form class="search-box" onsubmit="return submitSearch()">
+    <input type="text" id="searchInput" placeholder="Cari produk..." autocomplete="off" />
+    <button type="submit" aria-label="Cari Produk"><i class="fas fa-search"></i></button>
+  </form>
+</header>
+
+<div class="container">
+  <h2>Hasil Pencarian</h2>
+  <div class="product-grid" id="productGrid">
+    <!-- Produk akan muncul di sini -->
+  </div>
+  <p class="not-found" id="notFound" style="display:none;">Produk tidak ditemukan.</p>
+</div>
+
+<script>
+  const productGrid = document.getElementById("productGrid");
+  const notFound = document.getElementById("notFound");
+  const waNumber = "6281234567890"; // Ganti dengan nomor WA admin kamu
+
+  function getKeywordFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("keyword") || "";
+  }
+
+  function submitSearch() {
+    const keyword = document.getElementById("searchInput").value.trim();
+    if (!keyword) {
+      alert("Masukkan kata kunci pencarian.");
+      return false;
+    }
+    window.location.href = `search.html?keyword=${encodeURIComponent(keyword)}`;
+    return false;
+  }
+function buatProdukHTML(p) {
+  const gambar = p.imageFilename 
+    ? `http://localhost:5000/uploads/products/${p.imageFilename}`
+    : "https://via.placeholder.com/300x200?text=No+Image";
+
+  const deskripsi = p.deskripsi ? p.deskripsi : "Deskripsi produk tidak tersedia.";
+  const pesanWA = encodeURIComponent(
+    `Halo, saya mau beli produk *${p.nama || p.name}* dengan harga Rp ${(p.harga || p.price).toLocaleString("id-ID")}`
+  );
+
+  return `
+    <div class="product-card" tabindex="0" aria-label="Produk ${p.nama || p.name}">
+      <img src="${gambar}" alt="Foto produk ${p.nama || p.name}" onclick="openModal('${gambar}')"/>
+      <div class="product-info">
+        <h3>${p.nama || p.name}</h3>
+        <p class="description">${deskripsi}</p>
+        <p class="price">Rp ${(p.harga || p.price).toLocaleString("id-ID")}</p>
+        <button onclick="window.open('https://wa.me/${waNumber}?text=${pesanWA}', '_blank')" aria-label="Beli produk ${p.nama || p.name} sekarang">Beli Sekarang</button>
+      </div>
+    </div>
+  `;
+}
+function openModal(src) {
+  document.getElementById("imageModal").style.display = "block";
+  document.getElementById("modalImage").src = src;
+}
+
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+  async function fetchProduk(keyword = "") {
+    try {
+      let url = "http://localhost:5000/api/products";
+      if (keyword) url += `?q=${encodeURIComponent(keyword)}`;
+
+      const res = await fetch(url);
+      const produk = await res.json();
+
+      const hasilFilter = produk.filter(p => p.nama.toLowerCase().includes(keyword.toLowerCase()));
+
+      if (hasilFilter.length === 0) {
+        productGrid.innerHTML = "";
+        notFound.style.display = "block";
+        return;
+      }
+      notFound.style.display = "none";
+
+      productGrid.innerHTML = hasilFilter.map(buatProdukHTML).join("");
+    } catch (error) {
+      console.error("Gagal mengambil produk:", error);
+      productGrid.innerHTML = "<p style='color:red; text-align:center;'>Gagal memuat produk.</p>";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const keyword = getKeywordFromUrl();
+    document.getElementById("searchInput").value = keyword;
+    if (keyword) {
+      fetchProduk(keyword);
+    }
+  });
+</script>
+<!-- Modal Zoom Gambar -->
+<div id="imageModal" class="modal" style="display:none;">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+<style>
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #ccc;
+}
+</style>
+</body>
+</html>
